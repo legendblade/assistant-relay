@@ -1,9 +1,23 @@
 const express = require('express');
 const routes = express.Router();
+const url = require('url');
 
 const sendTextInput = require('./assistant').sendTextInput;
 const sendAudioInput = require('./assistant').sendAudioInput;
 
+routes.get('/assistant', function(req, res) {
+    const query = url.parse(req.url, true).query;
+
+    let command = query.command;
+    let broadcast = query.broadcast;
+    const user = query.user;
+    const converse = query.converse;
+    const preset = query.preset;
+  
+    //if no command passed, return 400
+    if(!command) return res.status(400).json({success: false, error: "No command given"})
+    doWork(res, command, broadcast, user, converse, preset);
+});
 
 routes.post('/assistant', function (req, res) {
   let command = req.body.command;
@@ -14,7 +28,10 @@ routes.post('/assistant', function (req, res) {
 
   //if no command passed, return 400
   if(!command) return res.status(400).json({success: false, error: "No command given"})
+  doWork(res, command, broadcast, user, converse, preset);
+});
 
+function doWork(res, command, broadcast, user, converse, preset) {
   if(preset) {
     broadcast = true;
     switch(preset) {
@@ -63,7 +80,7 @@ routes.post('/assistant', function (req, res) {
   .catch((err) => {
     res.status(400).json(err);
   })
-})
+}
 
 routes.post('/t', (req, res) => {
   sendAudioInput();
