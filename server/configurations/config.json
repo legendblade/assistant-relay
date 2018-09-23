@@ -6,12 +6,8 @@
       "sampleRateIn": 24000
     }
   },
+  "port": "3001",
+  "assistants": {},
   "users": {
-    "greg": {
-      "keyFilePath": "C:\\Users\\greg_\\Documents\\Node\\assistant-relay\\server\\configurations\\secrets\\greg.json",
-      "savedTokensPath": "C:\\Users\\greg_\\Documents\\Node\\assistant-relay\\server\\configurations\\tokens\\greg-tokens.json"
-    }
-  },
-  "port": "3000",
-  "assistants": {}
+  }
 }
