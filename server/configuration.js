@@ -9,6 +9,9 @@ const db = low(adapter);
 const secretsFolder = 'server/configurations/secrets/';
 
 const self = module.exports = {
+  silentStart: function() {
+    return db.get('silentStart', false);
+  },
   configureUsers: function() {
     return new Promise(resolve => {
       let secrets = [];

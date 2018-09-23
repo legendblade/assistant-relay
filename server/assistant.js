@@ -3,6 +3,7 @@ const GoogleAssistant = require('google-assistant');
 const FileReader = require('wav').Reader;
 const FileWriter = require('wav').FileWriter;
 //const wavFileInfo = require('wav-file-info');
+const silentStart = require('./configuration').silentStart;
 
 const ip = require('ip');
 const path = require('path');
@@ -45,7 +46,7 @@ var self = module.exports = {
           console.log(`Assistant Relay is now setup and running for${users.map(u => ` ${u}`)} \n`)
           console.log(`You can now visit ${ip.address()}:${global.config.port} in a browser, or send POST requests to it`);
         })();
-        self.sendTextInput('broadcast Assistant Relay is now setup and running')
+        if (!silentStart()) self.sendTextInput('broadcast Assistant Relay is now setup and running');
         resolve()
       })
     })

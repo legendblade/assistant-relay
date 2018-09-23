@@ -8,6 +8,7 @@
   },
   "port": "3001",
   "assistants": {},
+  "silentStart": true,
   "users": {
   }
 }
