@@ -5,7 +5,6 @@ const FileWriter = require('wav').FileWriter;
 //const wavFileInfo = require('wav-file-info');
 
 const ip = require('ip');
-const terminalImage = require('terminal-image');
 const path = require('path');
 const fs = require("fs");
 var tou8 = require('buffer-to-uint8array');
@@ -43,7 +42,6 @@ var self = module.exports = {
       }, function(err){
         if(err) return reject(err.message);
         (async() => {
-          console.log(await terminalImage.file('./icon.png'))
           console.log(`Assistant Relay is now setup and running for${users.map(u => ` ${u}`)} \n`)
           console.log(`You can now visit ${ip.address()}:${global.config.port} in a browser, or send POST requests to it`);
         })();
